@@ -7,6 +7,7 @@ public class GameManagerScript : MonoBehaviour
 
 {
     public Gamestate state;
+    private bool stateChanged;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class GameManagerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 state = Gamestate.paused;
+                stateChanged = true;
             }
         }
         else if (state == Gamestate.paused)
@@ -27,8 +29,24 @@ public class GameManagerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 state = Gamestate.inGame;
+                stateChanged = true;
+            }
+        }
+    }
+    private void LateUpdate()
+    {
+        if (stateChanged)
+        {
+            stateChanged = false;
+
+            if (state == Gamestate.inGame)
+            {
+                Time.timeScale = 1.0f;
+            }
+            else if (state == Gamestate.paused)
+            {
+                Time.timeScale = 0.0f;
             }
         }
     }
 }
-
