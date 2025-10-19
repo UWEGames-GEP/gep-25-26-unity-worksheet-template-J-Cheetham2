@@ -4,49 +4,39 @@ using UnityEngine;
 public enum Gamestate { paused, inGame };
 
 public class GameManagerScript : MonoBehaviour
-
 {
     public Gamestate state;
-    private bool stateChanged;
+
+    private GameState currentState;
+    private PlayingState playingState;
+    private PausedState pausedState;
 
     void Start()
     {
-        state = Gamestate.inGame;
+        playingState = new PlayingState(this);
+        pausedState = new PausedState(this);
+        ChangeState(playingState);
     }
 
     void Update()
     {
-        if (state == Gamestate.inGame)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                state = Gamestate.paused;
-                stateChanged = true;
-            }
-        }
-        else if (state == Gamestate.paused)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                state = Gamestate.inGame;
-                stateChanged = true;
-            }
-        }
+        currentState?.Update();
     }
-    private void LateUpdate()
-    {
-        if (stateChanged)
-        {
-            stateChanged = false;
 
-            if (state == Gamestate.inGame)
-            {
-                Time.timeScale = 1.0f;
-            }
-            else if (state == Gamestate.paused)
-            {
-                Time.timeScale = 0.0f;
-            }
-        }
+    public void ChangeState(GameState newState)
+    {
+        currentState?.Exit();
+        currentState = newState;
+        currentState?.Enter();
+    }
+
+    public void SetPausedState()
+    {
+        ChangeState(pausedState);
+    }
+
+    public void SetPlayingState()
+    {
+        ChangeState(playingState);
     }
 }
