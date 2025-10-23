@@ -8,6 +8,7 @@ public class GameManagerScript : MonoBehaviour
     public Gamestate state;
 
     private GameState currentState;
+    public GameState CurrentState => currentState;
     private PlayingState playingState;
     private PausedState pausedState;
 
