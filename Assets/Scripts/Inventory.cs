@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
-    private List<string> items = new List<string>();
-    public GameManagerScript gameManager;
+    [SerializeField] private List<string> items = new List<string>();
+    [SerializeField] private GameManagerScript gameManager;
 
     public void AddItem(string itemName)
     {
@@ -30,7 +30,7 @@ public class Inventory : MonoBehaviour
 
     void Update()
     {
-        if (gameManager == null || gameManager.GetCurrentStateName() != "PlayingState")
+        if (gameManager == null || !(gameManager.CurrentState is PlayingState))
             return;
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
