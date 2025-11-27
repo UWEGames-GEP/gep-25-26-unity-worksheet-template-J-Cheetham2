@@ -33,15 +33,15 @@ public class Inventory : MonoBehaviour
         if (gameManager == null || !(gameManager.CurrentState is PlayingState))
             return;
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            AddItem("Generic Item");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //{
+        //    AddItem("Generic Item");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            RemoveItem("Generic Item");
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //{
+        //    RemoveItem("Generic Item");
+        //}
     }
 
     public List<string> GetItems()
@@ -49,5 +49,16 @@ public class Inventory : MonoBehaviour
         return new List<string>(items);
     }
 
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        ItemObject collisionObject = hit.gameObject.GetComponent<ItemObject>();
+
+        if (collisionObject != null)
+        {
+            AddItem(collisionObject.itemName);
+
+            Destroy(collisionObject.gameObject);
+        }
+    }
 }
 
