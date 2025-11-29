@@ -2,18 +2,11 @@ using UnityEngine;
 
 public class ItemObject : MonoBehaviour
 {
-    public string itemName;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    [Header("Item Data")]
+    [SerializeField] private string itemName;
+    [SerializeField] private int value;
+    [SerializeField] private string description;
+    public string ItemName => itemName;
+    public int Value => value;
+    public string Description => description;
 }
