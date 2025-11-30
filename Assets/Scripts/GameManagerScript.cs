@@ -40,4 +40,16 @@ public class GameManagerScript : MonoBehaviour
     {
         ChangeState(playingState);
     }
+
+    public void TogglePause()
+    {
+        if (currentState is PlayingState)
+        {
+            SetPausedState();
+        }
+        else if (currentState is PausedState)
+        {
+            SetPlayingState();
+        }
+    }
 }

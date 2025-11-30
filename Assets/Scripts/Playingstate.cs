@@ -11,9 +11,9 @@ public class PlayingState : GameState
 
     public override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            gameManager.SetPausedState();
-        }
+        //if (Input.GetKeyDown(KeyCode.Return))
+        //{
+        //    gameManager.SetPausedState();
+        //}
     }
 }
