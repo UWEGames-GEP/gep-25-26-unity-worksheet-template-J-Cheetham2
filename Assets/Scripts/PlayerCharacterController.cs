@@ -10,7 +10,7 @@ public class PlayerCharacterController : ThirdPersonController
     {
         if (value.isPressed)
         {
-            if (gameManager != null)
+            if (gameManager == null)
             {
                 gameManager = FindAnyObjectByType<GameManagerScript>();
             }
@@ -24,7 +24,12 @@ public class PlayerCharacterController : ThirdPersonController
     {
         if (value.isPressed)
         {
-            Debug.Log("Remove Item");
+            Inventory inventory = GetComponent<Inventory>();
+
+            if (inventory != null)
+            {
+                inventory.RemoveItem();
+            }
         }
     }
 }

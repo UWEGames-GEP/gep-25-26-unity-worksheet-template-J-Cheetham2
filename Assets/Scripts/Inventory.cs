@@ -5,27 +5,47 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField] private List<ItemObject> items = new List<ItemObject>();
     [SerializeField] private GameManagerScript gameManager;
+    private Transform worldItemsTransform;
 
     public void AddItem(ItemObject item)
     {
-        items.Add(itemName);
+        items.Add(item);
     }
 
     public void RemoveItem(ItemObject item)
     {
-        if (items.Contains(itemName))
+        if (items.Contains(item))
         {
-            items.Remove(itemName);
+            items.Remove(item);
         }
         else
         {
-            Debug.Log(itemName + " not found in inventory");
+            Debug.Log(item.ItemName + " not found in inventory");
+        }
+    }
+
+    public void RemoveItem()
+    {
+        if (gameManager.CurrentState is PlayingState && items.Count > 0)
+        {
+            ItemObject item = items[0];
+
+            Vector3 spawnPosition = transform.position + transform.forward;
+            spawnPosition += new Vector3(0, 1, 0);
+
+            Quaternion spawnRotation = transform.rotation * Quaternion.Euler(0, 180, 0);
+            GameObject newItem = Instantiate(item.gameObject, spawnPosition, spawnRotation, worldItemsTransform);
+
+            newItem.SetActive(true);
+            items.Remove(item);
+            Destroy(item.gameObject);
         }
     }
 
     void Start()
     {
         gameManager = FindAnyObjectByType<GameManagerScript>();
+        worldItemsTransform = GameObject.Find("World Items").transform;
     }
 
     void Update()
