@@ -740,6 +740,7 @@ GameObject:
   - component: {fileID: 592322789}
   - component: {fileID: 592322788}
   - component: {fileID: 592322787}
+  - component: {fileID: 592322790}
   m_Layer: 5
   m_Name: Inventory Menu
   m_TagString: Untagged
@@ -834,6 +835,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592322785}
   m_CullTransparentMesh: 1
+--- !u!114 &592322790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592322785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9599b735f1c1d4b42bf64072c623c579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 113446817}
+  inventoryUIButtons: []
 --- !u!1001 &627047885
 PrefabInstance:
   m_ObjectHideFlags: 0
