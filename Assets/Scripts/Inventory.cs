@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private List<ItemObject> items = new List<ItemObject>();
+    [SerializeField] public List<ItemObject> items = new List<ItemObject>();
     [SerializeField] private GameManagerScript gameManager;
     private Transform worldItemsTransform;
 

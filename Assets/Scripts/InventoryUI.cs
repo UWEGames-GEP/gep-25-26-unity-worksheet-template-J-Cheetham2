@@ -13,6 +13,20 @@ public class InventoryUI : MonoBehaviour
 
     void RefreshInventory()
     {
-        Debug.Log("Refresh Inventory UI");
+        foreach (GameObject uiButton in inventoryUIButtons)
+        {
+            uiButton.SetActive(false);
+        }
+        for (int unit = 0; unit < inventory.items.Count; unit++)
+        {
+            if (unit < inventoryUIButtons.Count)
+            {
+                GameObject buttonObject = inventoryUIButtons[unit];
+                ItemObject item = inventory.items[unit];
+
+                buttonObject.SetActive(true);
+                buttonObject.GetComponent<InventoryUIButton>().SetButton(item);
+            }
+        }
     }
 }
