@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private List<string> items = new List<string>();
+    [SerializeField] private List<ItemObject> items = new List<ItemObject>();
     [SerializeField] private GameManagerScript gameManager;
 
-    public void AddItem(string itemName)
+    public void AddItem(ItemObject item)
     {
         items.Add(itemName);
     }
 
-    public void RemoveItem(string itemName)
+    public void RemoveItem(ItemObject item)
     {
         if (items.Contains(itemName))
         {
@@ -44,10 +44,10 @@ public class Inventory : MonoBehaviour
         //}
     }
 
-    public List<string> GetItems()
-    {
-        return new List<string>(items);
-    }
+    //public List<string> GetItems()
+    //{
+    //    return new List<string>(items);
+    //}
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -55,9 +55,9 @@ public class Inventory : MonoBehaviour
 
         if (collisionObject != null)
         {
-            AddItem(collisionObject.ItemName);
+            AddItem(collisionObject);
 
-            Destroy(collisionObject.gameObject);
+            collisionObject.gameObject.SetActive(false);
         }
     }
 }
