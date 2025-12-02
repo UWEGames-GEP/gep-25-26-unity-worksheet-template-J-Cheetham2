@@ -32,4 +32,16 @@ public class PlayerCharacterController : ThirdPersonController
             }
         }
     }
+    private void OnInventory (InputValue value)
+    {
+        if (value.isPressed)
+        {
+            if (gameManager == null) gameManager = FindAnyObjectByType<GameManagerScript>();
+
+            if (gameManager != null)
+            {
+                gameManager.ToggleInventory();
+            }
+        }
+    }
 }
