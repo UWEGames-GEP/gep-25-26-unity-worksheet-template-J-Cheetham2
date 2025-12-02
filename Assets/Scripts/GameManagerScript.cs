@@ -7,6 +7,7 @@ public class GameManagerScript : MonoBehaviour
 {
     public Gamestate state;
 
+    public GameObject inventoryUI;
     private GameState currentState;
     public GameState CurrentState => currentState;
     private PlayingState playingState;
@@ -22,6 +23,21 @@ public class GameManagerScript : MonoBehaviour
     void Update()
     {
         currentState?.Update();
+    }
+
+    void LateUpdate()
+    {
+        if (currentState is PlayingState)
+        {
+            if (inventoryUI != null) inventoryUI.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else if (currentState is PausedState)
+        {
+            if (inventoryUI != null) inventoryUI.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
     }
 
     public void ChangeState(GameState newState)

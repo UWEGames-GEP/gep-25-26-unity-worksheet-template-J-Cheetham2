@@ -862,7 +862,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventory: {fileID: 113446817}
-  inventoryUIButtons: []
+  inventoryUIButtons:
+  - {fileID: 1549620741}
+  - {fileID: 667057758}
+  - {fileID: 178920889}
 --- !u!1001 &627047885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1851,6 +1854,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 1
+  inventoryUI: {fileID: 592322785}
 --- !u!4 &1285756495
 Transform:
   m_ObjectHideFlags: 0
