@@ -16,7 +16,15 @@ public class Inventory : MonoBehaviour
     {
         if (items.Contains(item))
         {
+            Vector3 spawnPosition = transform.position + transform.forward;
+            spawnPosition += new Vector3(0, 1, 0);
+
+            Quaternion spawnRotation = transform.rotation * Quaternion.Euler(0, 180, 0);
+            GameObject newItem = Instantiate(item.gameObject, spawnPosition, spawnRotation, worldItemsTransform);
+
+            newItem.SetActive(true);
             items.Remove(item);
+            Destroy(item.gameObject);
         }
         else
         {
@@ -28,17 +36,7 @@ public class Inventory : MonoBehaviour
     {
         if (gameManager.CurrentState is PlayingState && items.Count > 0)
         {
-            ItemObject item = items[0];
-
-            Vector3 spawnPosition = transform.position + transform.forward;
-            spawnPosition += new Vector3(0, 1, 0);
-
-            Quaternion spawnRotation = transform.rotation * Quaternion.Euler(0, 180, 0);
-            GameObject newItem = Instantiate(item.gameObject, spawnPosition, spawnRotation, worldItemsTransform);
-
-            newItem.SetActive(true);
-            items.Remove(item);
-            Destroy(item.gameObject);
+            RemoveItem(items[0]);
         }
     }
 
