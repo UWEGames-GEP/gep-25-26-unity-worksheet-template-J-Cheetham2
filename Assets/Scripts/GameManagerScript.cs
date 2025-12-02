@@ -7,12 +7,14 @@ public class GameManagerScript : MonoBehaviour
 {
     public Gamestate state;
 
+    public GameObject controlsPrompt;
     public GameObject inventoryUI;
     private GameState currentState;
     public GameState CurrentState => currentState;
     private PlayingState playingState;
     private PausedState pausedState;
     private InventoryState inventoryState;
+
 
     void Start()
     {
@@ -29,6 +31,10 @@ public class GameManagerScript : MonoBehaviour
 
     void LateUpdate()
     {
+        if (controlsPrompt != null)
+        {
+            controlsPrompt.SetActive(currentState is PlayingState);
+        }
         if (currentState is PlayingState)
         {
             if (inventoryUI != null) inventoryUI.SetActive(false);
