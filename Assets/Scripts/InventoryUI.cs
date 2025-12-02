@@ -26,7 +26,17 @@ public class InventoryUI : MonoBehaviour
 
                 buttonObject.SetActive(true);
                 buttonObject.GetComponent<InventoryUIButton>().SetButton(item);
+
+                UnityEngine.UI.Button button = buttonObject.GetComponent<UnityEngine.UI.Button>();
+                button.onClick.RemoveAllListeners();
+                int buttonID = unit;
+                button.onClick.AddListener(() => OnInventoryUIButton(buttonID));
             }
         }
+    }
+    public void OnInventoryUIButton(int index)
+    {
+        inventory.RemoveItem(inventory.items[index]);
+        RefreshInventory();
     }
 }
